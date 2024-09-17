@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import '../widgets/data_chart.dart'; // Asegúrate de que la ruta sea correcta
 import '../services/income_service.dart';
 
 class HistoryIncomeScreen extends StatelessWidget {
@@ -8,8 +8,8 @@ class HistoryIncomeScreen extends StatelessWidget {
     final incomes = IncomeService.incomes;
 
     // Preparar los datos para el gráfico
-    List<_ChartData> chartData = incomes.map((income) {
-      return _ChartData(income.category, income.amount);
+    List<ChartData> chartData = incomes.map((income) {
+      return ChartData(income.category, income.amount);
     }).toList();
 
     return Scaffold(
@@ -27,37 +27,67 @@ class HistoryIncomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Gráfico de barras
+          // Gráfico de barras utilizando el widget personalizado
           Expanded(
             flex: 2,
-            child: SfCartesianChart(
-              title: ChartTitle(text: 'Ingresos por Categoría'),
-              primaryXAxis: CategoryAxis(),
-              series: <ChartSeries<_ChartData, String>>[
-                BarSeries<_ChartData, String>(
-                  dataSource: chartData,
-                  xValueMapper: (_ChartData data, _) => data.category,
-                  yValueMapper: (_ChartData data, _) => data.amount,
-                  color: Color.fromARGB(255, 105, 48, 204),
-                  name: 'Ingresos',
-                )
-              ],
+            child: DataChart(
+              chartData: chartData,
+              title: 'Ingresos por Categoría',
+              barColor: Color.fromARGB(255, 105, 48, 204),
             ),
           ),
-          // Lista de ingresos
+          // Lista de ingresos con tarjetas mejoradas
           Expanded(
             flex: 3,
             child: ListView.builder(
               itemCount: incomes.length,
               itemBuilder: (context, index) {
                 final income = incomes[index];
-                return ListTile(
-                  title: Text(income.category, style: TextStyle(color: Colors.white)),
-                  subtitle: Text(
-                    'Monto: ${income.amount}\nFecha: ${income.date.toLocal().toShortDateString()}',
-                    style: TextStyle(color: Colors.white),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  child: Card(
+                    color: Colors.grey[850],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    elevation: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            income.category,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Monto: \$${income.amount}',
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                income.date.toLocal().toShortDateString(),
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  tileColor: Colors.grey[800],
                 );
               },
             ),
@@ -73,11 +103,4 @@ extension DateFormatting on DateTime {
   String toShortDateString() {
     return "${this.day}/${this.month}/${this.year}";
   }
-}
-
-// Clase para manejar los datos del gráfico
-class _ChartData {
-  _ChartData(this.category, this.amount);
-  final String category;
-  final double amount;
 }

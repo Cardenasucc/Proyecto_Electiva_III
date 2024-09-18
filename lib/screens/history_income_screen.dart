@@ -1,5 +1,9 @@
+/**
+ * Pantalla para visualizar el historial de costos
+*/
+
 import 'package:flutter/material.dart';
-import '../widgets/data_chart.dart'; // Asegúrate de que la ruta sea correcta
+import '../widgets/data_chart.dart';
 import '../services/income_service.dart';
 
 class HistoryIncomeScreen extends StatelessWidget {
@@ -7,7 +11,6 @@ class HistoryIncomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final incomes = IncomeService.incomes;
 
-    // Preparar los datos para el gráfico
     List<ChartData> chartData = incomes.map((income) {
       return ChartData(income.category, income.amount);
     }).toList();
@@ -27,7 +30,6 @@ class HistoryIncomeScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Gráfico de barras utilizando el widget personalizado
           Expanded(
             flex: 2,
             child: DataChart(
@@ -36,7 +38,6 @@ class HistoryIncomeScreen extends StatelessWidget {
               barColor: Color.fromARGB(255, 105, 48, 204),
             ),
           ),
-          // Lista de ingresos con tarjetas mejoradas
           Expanded(
             flex: 3,
             child: ListView.builder(

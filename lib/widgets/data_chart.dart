@@ -1,4 +1,7 @@
-// data_chart.dart
+/**
+ *  widget para visualizar graficas con la libreria flutter_charts
+ */
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -18,13 +21,13 @@ class DataChart extends StatelessWidget {
     return SfCartesianChart(
       title: ChartTitle(
         text: title,
-        textStyle: TextStyle(color: Colors.white), // Color del título
+        textStyle: TextStyle(color: Colors.white),
       ),
       primaryXAxis: CategoryAxis(
-        labelStyle: TextStyle(color: Colors.white), // Color de las etiquetas del eje X
+        labelStyle: TextStyle(color: Colors.white),
       ),
       primaryYAxis: NumericAxis(
-        labelStyle: TextStyle(color: Colors.white), // Color de las etiquetas del eje Y
+        labelStyle: TextStyle(color: Colors.white),
       ),
       series: <ChartSeries<ChartData, String>>[
         BarSeries<ChartData, String>(
@@ -35,7 +38,7 @@ class DataChart extends StatelessWidget {
           name: 'Data',
         )
       ],
-      backgroundColor: Colors.black, // Fondo del gráfico
+      backgroundColor: Colors.black,
     );
   }
 }

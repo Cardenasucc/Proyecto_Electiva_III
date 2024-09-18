@@ -1,5 +1,9 @@
+/**
+ * Pantalla para visualizar el historial de gastos
+ */
+
 import 'package:flutter/material.dart';
-import '../widgets/data_chart.dart'; // Asegúrate de que la ruta sea correcta
+import '../widgets/data_chart.dart';
 import '../services/expense_service.dart';
 
 class HistoryExpenseScreen extends StatelessWidget {
@@ -7,7 +11,6 @@ class HistoryExpenseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final expenses = ExpenseService.expenses;
 
-    // Preparar los datos para el gráfico
     List<ChartData> chartData = expenses.map((expense) {
       return ChartData(expense.category, expense.amount);
     }).toList();
@@ -27,7 +30,6 @@ class HistoryExpenseScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Gráfico de barras utilizando el widget personalizado
           Expanded(
             flex: 2,
             child: DataChart(
@@ -36,7 +38,6 @@ class HistoryExpenseScreen extends StatelessWidget {
               barColor: Color.fromARGB(255, 105, 48, 204),
             ),
           ),
-          // Lista de gastos con tarjetas mejoradas
           Expanded(
             flex: 3,
             child: ListView.builder(

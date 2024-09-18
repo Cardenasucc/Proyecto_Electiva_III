@@ -1,3 +1,6 @@
+/**
+ * Clase para manejar modelo de costos
+ */
 class Income {
   final String category;
   final double amount;

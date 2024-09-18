@@ -1,3 +1,7 @@
+/**
+ * Pantalla para manejar las peticiones de los costos
+ */
+
 import 'package:flutter/material.dart';
 import '../widgets/category_dropdown.dart';
 import '../widgets/amount_input.dart';
@@ -90,8 +94,8 @@ class _AddIncomeScreenState extends State<AddIncomeScreen> {
                         amount: _amount!,
                         date: _selectedDate,
                       );
-                      IncomeService.addIncome(newIncome); // Agregar el ingreso al servicio
-                      Navigator.pop(context); // Regresar a la pantalla anterior
+                      IncomeService.addIncome(newIncome);
+                      Navigator.pop(context);
                     }
                   },
                   child: Text('Agregar Ingreso'),

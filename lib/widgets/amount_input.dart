@@ -1,3 +1,7 @@
+/**
+ * Widget para manejar el diseño del boton de monto
+ */
+
 import 'package:flutter/material.dart';
 
 class AmountInput extends StatelessWidget {

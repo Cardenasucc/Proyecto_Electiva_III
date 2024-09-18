@@ -1,3 +1,7 @@
+/**
+ * Widget que manejar un calendario 
+ */
+
 import 'package:flutter/material.dart';
 
 class DateSelector extends StatefulWidget {

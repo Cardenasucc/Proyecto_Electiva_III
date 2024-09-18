@@ -1,3 +1,7 @@
+/**
+ * Clase para manejar modelo de gastos
+ */
+
 class Expense {
   final String category;
   final double amount;

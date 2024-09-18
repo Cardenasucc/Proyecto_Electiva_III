@@ -1,3 +1,6 @@
+/**
+ * Pantalla principal
+ */
 import 'package:flutter/material.dart';
 import '../widgets/animated_button.dart';
 import 'add_income_screen.dart';

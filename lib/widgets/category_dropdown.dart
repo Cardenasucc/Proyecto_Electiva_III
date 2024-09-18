@@ -1,3 +1,7 @@
+/**
+ * Widget para manejar el diseño de categorias 
+ */
+
 import 'package:flutter/material.dart';
 
 class CategoryDropdown extends StatefulWidget {

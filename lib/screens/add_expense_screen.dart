@@ -1,3 +1,7 @@
+/**
+ * Pantalla para manejar las peticiones de los gastos 
+ */
+
 import 'package:flutter/material.dart';
 import '../widgets/category_dropdown.dart';
 import '../widgets/amount_input.dart';
